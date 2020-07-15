@@ -1,0 +1,10 @@
+For tutorials on Javascript Full-Screen API & CSS check :
+http://usefulangle.com/post/12/javascript-going-fullscreen-is-rare
+http://usefulangle.com/post/59/full-screen-css
+
+Sample codes last updated : 10th Oct, 2017
+
+
+AWS EB setup
+
+https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/eb-cli3-install-windows.html

@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang = "en">
+   <head>
+      <meta charset = "utf-8">
+      <title>jQuery UI Datepicker functionality</title>
+      <link href = "https://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css"
+         rel = "stylesheet">
+      <script src = "https://code.jquery.com/jquery-1.10.2.js"></script>
+      <script src = "https://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+      
+	  <style>
+		.ui-datepicker table.ui-datepicker-calendar .ui-datepicker-week-end{
+			display : none;
+		}
+	  </style>
+	  
+      <!-- Javascript -->
+      <script>
+		$(function() {
+			$( "#datepicker-2" ).datepicker({
+				showButtonPanel: true,
+	            dateFormat: 'yy-mm-dd',
+				showMonthAfterYear: true,
+				beforeShowDay: function(date) {
+					dmy = date.getDate() + "-" + (date.getMonth() + 1) + "-" + date.getFullYear();
+					var day = date.getDay();
+					var unavailableDates = [];
+					//var unavailableDates = ["11-11-2019"];
+					
+					if ($.inArray(dmy, unavailableDates) == -1 && day != 2) {
+						return [true, ""];
+					}
+					else if(date.getDay() === 1){
+						return [ false, "closed", "Unavailable" ]
+					}
+					else {
+						return [false, "", "Unavailable"];
+					}
+				},
+				onSelect: function(dateText, inst) { 
+					$(this).addClass('selectDate')
+					var dateAsString = dateText; //the first parameter of this function
+					var dateAsObject = $(this).datepicker( 'getDate' ); //the getDate method
+					alert(dateAsString)
+				}
+			});
+			
+         });		 
+      </script>
+   </head>
+   
+   <body>
+      <!-- HTML --> 
+     <div id = "datepicker-2"></div>
+   </body>
+</html>

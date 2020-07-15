@@ -1,0 +1,101 @@
+BEGIN
+ 
+ DECLARE v_finished INTEGER DEFAULT 0;
+        DECLARE v_email varchar(100) DEFAULT "";
+ 
+  DEClARE email_cursor CURSOR FOR 
+ SELECT email FROM users WHERE status = 1;
+ 
+ 
+ -- declare NOT FOUND handler
+ DECLARE CONTINUE HANDLER 
+        FOR NOT FOUND SET v_finished = 1;
+ 
+ OPEN email_cursor;
+ 
+ get_email: LOOP
+ 
+ FETCH email_cursor INTO v_email;
+ 
+ IF v_finished = 1 THEN 
+ LEAVE get_email;
+ END IF;
+ 
+ -- build email list
+ SET email_list = CONCAT(v_email,";",email_list);
+ 
+ END LOOP get_email;
+ 
+ CLOSE email_cursor;
+ 
+END
+
+
+==================
+-- Function getDayName
+
+CREATE DEFINER=`root`@`localhost` FUNCTION `getDayName`(`dayNumber` INT) RETURNS varchar(255) CHARSET utf8
+    NO SQL
+BEGIN
+
+CASE WHEN dayNumber = 1
+THEN 
+RETURN ("Sunday");
+ WHEN dayNumber = 2
+THEN 
+RETURN ("Monday");
+WHEN dayNumber = 3
+THEN 
+RETURN ("Tuesday");
+WHEN dayNumber = 4
+THEN 
+RETURN ("Wednesday");
+WHEN dayNumber = 5
+THEN 
+RETURN ("Thursday");
+WHEN dayNumber = 6
+THEN 
+RETURN ("Friday");
+WHEN dayNumber = 7
+THEN 
+RETURN ("Saturday");
+ELSE
+RETURN NULL;
+END CASE;
+
+END
+
+===================
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `build_email_list`(INOUT `email_list` VARCHAR(4000))
+BEGIN
+ 
+ DECLARE v_finished INTEGER DEFAULT 0;
+        DECLARE v_email varchar(100) DEFAULT "";
+ 
+  DEClARE email_cursor CURSOR FOR 
+ SELECT email FROM users WHERE status = 1;
+ 
+ 
+ -- declare NOT FOUND handler
+ DECLARE CONTINUE HANDLER 
+        FOR NOT FOUND SET v_finished = 1;
+ 
+ OPEN email_cursor;
+ 
+ get_email: LOOP
+ 
+ FETCH email_cursor INTO v_email;
+ 
+ IF v_finished = 1 THEN 
+ LEAVE get_email;
+ END IF;
+ 
+ -- build email list
+ SET email_list = CONCAT(v_email,";",email_list);
+ 
+ END LOOP get_email;
+ 
+ CLOSE email_cursor;
+ 
+END

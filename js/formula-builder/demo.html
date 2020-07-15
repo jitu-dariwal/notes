@@ -1,0 +1,165 @@
+<html>
+	<head>
+		<link href="https://stackpath.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+		<link href="css/style.css" rel="stylesheet">
+		<link href="css/expression-builder.css" rel="stylesheet">
+
+
+		<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+		
+		<!--<script src="js/index.js"></script>-->
+		<script src="js/expression-builder-v2.js"></script>
+		<title>exp-js</title>
+	</head>
+	<body>
+		<div class="container">
+			<div class="col-lg-12">
+				<h3>Example</h3>
+				<div class="form-group">
+					<button id="getExp" class="btn btn-sm btn-warning">Get Exp</button>
+					<button id="runExp" class="btn btn-sm btn-success">Run</button>
+					<button id="getInput" class="btn btn-sm btn-info">Get Input</button>
+					<button id="clear" class="btn btn-sm btn-danger">Clear</button>
+				</div>
+				<hr/>
+				<div class="form-group clearfix">
+					<h4>Set Variables :</h4>
+					<div class="col-lg-3">
+						<label>Var 1 :</label>
+						<input type="number" id="var1" class="form-control" value="1"/>
+					</div>
+					<div class="col-lg-3">
+						<label>Var 2 :</label>
+						<input type="number" id="var2" class="form-control" value="1"/>
+					</div>
+					<div class="col-lg-3">
+						<label>Var 3 :</label>
+						<input type="number" id="var3" class="form-control" value="1"/>
+					</div>
+					<div class="col-lg-3">
+						<label>Var 4 :</label>
+						<input type="number" id="var4" class="form-control" value="1"/>
+					</div>
+					<br/><br/><br/><br/>
+					<div class="col-lg-12">
+						<button class="btn btn-primary clearfix" onclick="setExp()">Reset</button>
+					</div>
+				</div>
+				<hr/>
+				<div class="form-group clearfix">
+					<label>Try the expression builder here:</label>
+					<textarea id="field" class="form-control"></textarea>
+				</div>
+				<div class="form-group">
+					<label>Result Area:</label>
+					<div id="resultArea" class="col-lg-12">
+						Empty
+					</div>
+				</div>
+				<br/>
+				<div class="form-group">
+					<label>Insert test at cursor position:</label>
+					<input id="text" class="form-control"/>
+					
+					<br/>
+					<button id="addButton" class="btn btn-success">Insert</button>
+					<br/><br/>
+					
+					<textarea id="textArea" class="form-control">I would like to create a simple function that adds text into a text area at the user's cursor position. It needs to be a clean function. Just the basics. I can figure out the rest.</textarea>
+				</div>
+			</div>
+		</div>
+		
+		<script>
+			var fieldExp = $('#field');
+			
+			var objExp;
+			
+			function setExp(){
+				var variables = [
+					{
+						variableId: "v1",
+						name: 'var1',
+						value: Number($('#var1').val())
+					},
+					{
+						variableId: "v2",
+						name: 'var2',
+						value: Number($('#var2').val())
+					},
+					{
+						variableId: "v3",
+						name: 'var_3',
+						value: Number($('#var3').val())
+					},
+					{
+						variableId: "v4",
+						name: 'var4',
+						value: Number($('#var4').val())
+					}
+				];
+								
+				objExp = fieldExp.expressionBuilder({
+					variables : variables,
+					suggestions: "up"
+				});
+			}
+			
+			setExp();
+			
+			$('#clear').click(function(){
+				fieldExp.val('');
+			});
+			
+			$('#getInput').click(function(){
+				$('#resultArea').html('Input : '+ objExp.getInput() );
+			});
+			
+			$('#runExp').click(function(){
+				$('#resultArea').html('Result : '+ objExp.runExpression() );
+			});
+			
+			$('#getExp').click(function(){
+				$('#resultArea').html('Expression : '+ objExp.getExpression() );
+			});		
+			
+			
+			function insertAtCursor(myField, myValue) {
+				//IE support
+				if (document.selection) {
+					myField.focus();
+					sel = document.selection.createRange();
+					sel.text = myValue;
+				}
+				// Microsoft Edge
+				else if(window.navigator.userAgent.indexOf("Edge") > -1) {
+				  var startPos = myField.selectionStart; 
+				  var endPos = myField.selectionEnd; 
+					  
+				  myField.value = myField.value.substring(0, startPos)+ myValue 
+						 + myField.value.substring(endPos, myField.value.length); 
+				  
+				  var pos = startPos + myValue.length;
+				  myField.focus();
+				  myField.setSelectionRange(pos, pos);
+				}
+				//MOZILLA and others
+				else if (myField.selectionStart || myField.selectionStart == '0') {
+					var startPos = myField.selectionStart;
+					var endPos = myField.selectionEnd;
+					myField.value = myField.value.substring(0, startPos)
+						+ myValue
+						+ myField.value.substring(endPos, myField.value.length);
+				} else {
+					myField.value += myValue;
+				}
+			}
+			
+			$('#addButton').on('click', function() {
+			  insertAtCursor(document.getElementById('textArea'), $('#text').val());
+			});
+		</script>
+		
+	</body>
+</html>

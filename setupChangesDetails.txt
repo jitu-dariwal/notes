@@ -1,0 +1,49 @@
+git clone -b branch_name https://github.com/CreativeResearchLLC/HHP.git
+
+1. https to http
+	xampp/htdocs/hhp/app/http/middleware/forcessl
+2. rand function in factory
+	xampp/htdocs/hhp/database/factories/
+3. insert .env file
+4. change APP_ENV testing to local
+5. composer update
+6. php artisan migrate:fresh --seed
+7. change APP_ENV local to testing
+
+
+executive@hhp.dev
+test
+
+Dusk Test
+
+1. DuskTestCase.php coment headless
+2. php artisan dusk --filter className::functionName
+	
+	
+	
+Username : rakesh.goyal
+Access Key ID: AKIAIJGTV3QVLZER5LIQ 
+Secret Access Key: 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
+
+EB Install
+
+https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/eb-cli3-install-advanced.html
+
+https://docs.amazonaws.cn/en_us/elasticbeanstalk/latest/dg/eb-cli3-install-osx.html
+
+EB setup
+
+1. eb init -i
+2. select (1) --us-east-1 : US East (N. Virginia)
+3. Enter Above Credentials
+4. Select Application (HHP)
+5. Select the default environment.(hhp-dev-2)
+6. It appears you are using PHP. Is this correct?(Y/n): Y
+7. Select a platform version.(PHP 7.2)
+8. Do you wish to continue with CodeCommit? (y/N) (default is n): n
+9. Do you want to set up SSH for your instances?(Y/n): y
+10. Select a keypair.(aws-eb-hhp-dev2)
+
+11. eb ssh (with Key file on path "c:/user/admin/.ssh/")
+
+

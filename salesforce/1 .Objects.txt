@@ -1,0 +1,245 @@
+==================================================================================
+Object   : 
+==================================================================================
+	1.Objects are nothing but tables in the regular database .
+	
+	2.Any data stored in the salesforce will be saved to objects.
+	
+	3.There are two types of objects 
+		a. Standard Objects .
+		b. Custom Objects 
+		
+	4.Standard Objects : 
+		a. Objects which are created by the salesforce  are called standard objects.
+		Ex : Account,Contact,User,Profile ,UserRole,Lead,Opportunity
+		
+		b.Standard Objects cannot be deleted .
+		
+		c.Standard objects can be customized .
+		
+	5.Custom Objects :
+		a. These are the objects created by user to meet his organizational business
+			reqirement.
+   
+		b. All the custom objects are appended with __C 
+			Ex : Customer__c , Loan__c ,Payment__c .
+			
+	6. Steps to create Custom Objects
+ 
+		a. Navigation 
+			
+		Setup   
+			|---Build
+				    |---Create
+						    |---Objects 
+									 |---New Custom Objects
+									 
+	Step 1 : Enter Object Label  
+         Example : Customer
+		 
+	Note : Objects are  displayed on the User Interface with object Label
+	
+    Step 2: Enter Pural Label    
+         Example : Customers
+	Note : If we create a tab for this object ,Name that should be displayed 
+                       on the tab is called pural Label
+					   
+	Step 3: Enter Object Name 
+         Example : Customer
+	Note : If you want to refer to object Programatically we use object Name.
+   
+	Step 4: Context sensitive help
+	
+       1. On Every object salesforce provides helpforthispage Link . 
+	   
+       2. When we click on the link which document should be opened is defined 
+          using this settings 
+      
+      a. Open the standard Salesforce.com Help & Training window.
+         If this option is selected salesforce standard document will be
+         opened
+		 
+      b.Open a window using a Visualforce page .
+         If we choose this option we can create our own visualforce page as
+         help document.
+		 
+	Step 5:: Record Name Label and DataType 
+	
+      a. Salesforce by defualt on every custom object creates one 
+         standard field with name " Name"
+ 
+      b. With what label this field should be displayed ,that name we 
+         define as Record Name Label
+		 
+      c. This is a required field 
+	  
+      d. This will accept the datatypes of Text and AutoNumber.
+	  
+      e. If we choose the data type as Text ,This will alphanumeric data .
+	  
+      f. If we choose the data Type as Autonumber, Then system will  generate 
+         the data in the format what we have specified .
+      
+         Ex :
+         Format  : INVNO{0000}
+         Start      : 0
+         INVNO0001
+         INVN00002
+         INVNO0003
+         Format : OR-{000}
+         Start     : 501
+         OR-501
+         OR-502
+         Format : {mm}{dd}{000}
+         Start      :1
+         1029001
+         1029002
+		 
+	Step 6: Optional Features :
+			These options can be enabled or disabled at any stage of the application
+			
+       a.Allow Reports    	: If you enable this option ,we can create reports 
+                             on the data which is available in the object.
+ 
+       b.Allow Activities   : If you enable this option we can create Events 
+                             and Tasks on this object .
+                
+      c.Track Field History : If you enable this option we can track the 
+                              changes made on the fields of this object.
+ 
+       d.Allow in chatter Group: If you enable this option we can create 
+                                 chatter groups on this object.
+								 
+	Step 7: Object Classification :
+      
+      a. Allow Sharing
+      b. Allow Bulk API Access
+      c. Allow Streaming API Access
+	  
+      Note : if we enable all the  three options then it is Enterprise 
+              Application object.
+			  
+      Note : If we disable any one of this option we call it as Lightning 
+             application object.
+			 
+	Step 8 : Deployment Status :
+	
+			In Development  : If we enable this option  only Adminstrator will be 
+					able to access this object ,no other user can see this object .
+			
+			Deployed        : If we enable this option  All the users in the 
+								organization can access this object based on 
+								security model of the organization.
+   
+	Step 9: Allow Search    :
+	
+      If we enable this option  content of this object can be searched 
+	  from global search.
+	  
+	Step 10: Object Creation Option :
+			These options can be enabled or disabled only at the time of creating an object.
+			
+      a. Add Notes and Attachments related list to default page layout.
+      b. Launch New Custom Tab Wizard after saving this custom object.
+	  
+Schema Builder :
+ 
+	1.We can also build custom objects using Schema builder .
+	2. Setup	
+		 |---Build
+				|---Develop	
+						|---Schema Builder 
+									|---Elements 
+											|---Drag and drop object icon.
+	3. Enter the details .
+	  
+	  
+	Q:: Who can create new Objects in the Salesforce ??
+	A:: users whose profile has Customize Application option enabled .
+	
+	Q:: How to controll the permissions on the Object .
+	A:: Object Level permissions are controlled at Profile Level.
+	
+	Q:: In How many ways we can create custom objects?
+	A:: Three ways 
+		1. Standard Navigation
+		2. Schema Builder 
+		3. Metadata SOAP API webservice
+		
+	Q:: Objects falls under which part of MVC ?
+    A:: Model
+	
+	Q:: How many custom objects we can create in the salesforce ?
+	A:: It depends on the edition .
+		Unlimited Editions     	: 2000
+		Enterprise        		: 200
+		Developer        		: 400
+		Professional         	: 50
+		
+	Note : In salesforce every object has three character unique Id.
+	
+		Account 	-- 001
+		Contct  	-- 003
+		User		-- 005
+		Opportunity	-- 006
+		Profile  	-- 00e
+		Lead 		-- 00Q
+		Order		-- 801
+		Case 		-- 500
+		Solution 	-- 501
+		Loan__c		-- a01
+				
+	Usecase1: Create  Custom Objects .
+		a.Object  :Customer 
+			Record name Label  	: CustomerNo
+			Name  Field       	: AutoNumber 
+			Format         		: CID-{000}
+			Start         		: 1
+		Profile :
+      
+		Name      		Read    Create    Edit   Delete
+		--------------------------------------------------
+		Manager     	Yes    	Yes       Yes     No
+		Clerk      		Yes    	Yes       No      No
+		Field Executive Yes    	No        No      No
+      
+		b.Object  :Invoice
+			Record name Label : InvoiceNo
+			DataType     	  : AutoNumber
+			Format        	  : INV{mm}{000}
+			Start        	  : 1
+			
+			
+		Profile :
+      
+		Name      		Read   Create    Edit   Delete
+		--------------------------------------------------
+		Manager     	Yes    Yes       Yes     Yes
+		Clerk      		Yes    Yes       Yes     No
+		Field Executive Yes    Yes       No      No
+		
+	c.Object  :Loan
+         RecordLabel 	: LoanNo
+         DataType    	: AutoNumber
+         Foramt       	: LIDP-{00}
+         Start       	: 51
+		 
+    Profile :
+      
+      Name      		Read    Create    Edit   Delete
+      --------------------------------------------------
+      Manager       	Yes    Yes        Yes     No
+      Clerk      		Yes    Yes        No      No
+      Field Executive 	Yes    No         No      No
+	  
+	Note : Every object we create in salesforce  will have three charatcter 
+       unique id. Based on Id salesforce recognize the object.
+           
+	Example : 
+		Object Name    Unique Id
+		---------------------------------------------
+           Account    	001
+           Contact      003
+           User      	005
+           Campaign   	701
+           Lead      	00Q

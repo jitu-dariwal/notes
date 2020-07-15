@@ -1,0 +1,86 @@
+SELECT * FROM ( select (select A from B where ... ) as C from D
+     ) subq
+WHERE 
+    C like ' ... '
+	
+	
+SELECT * FROM ( SELECT id,slug,title,body,(REGEXP_REPLACE(body, '<[^>]*>+', '')) as new_body FROM static_pages) as subq where new_body like '%Support your entire%'
+
+/****************************/
+
+convert date into timestamp:
+
+let asd = Date.parse(data.utc_start_datetime);
+console.log("Start Date : ", asd/1000);
+
+console.log("Today Date : ", Math.round(new Date().getTime()/1000));
+console.log("From Date : ", Math.round(new Date(data.utc_start_datetime).getTime()/1000));
+
+
+var today = new Date();
+var Christmas = new Date("2012-12-25");
+var diffMs = (Christmas - today); // milliseconds between now & Christmas
+var diffDays = Math.floor(diffMs / 86400000); // days
+var diffHrs = Math.floor((diffMs % 86400000) / 3600000); // hours
+var diffMins = Math.round(((diffMs % 86400000) % 3600000) / 60000); // minutes
+alert(diffDays + " days, " + diffHrs + " hours, " + diffMins + " minutes until Christmas 2009 =)");
+
+
+
+/* UTC_start = UTC now_datetime */
+session.utc_start = new Date();
+
+console.log("utc_start : ", session.utc_start.toString());
+
+var date1 = new Date("2020/05/18 17:30").getTime();
+var date2 = session.utc_start.getTime();
+
+
+var msec = date1 - date2;
+
+var mins = Math.abs(Math.floor(msec / 60000));
+
+//var mins = Math.floor(msec / 60000);
+
+console.log('minutes', mins);
+
+const graceTime = new Date(date2 + Number(setting.session_grace_mins) * 60000);
+
+console.log("graceTime : ", graceTime.toString());
+
+
+
+//let today = new Date();
+//let startDate = new Date(startDateTime);					
+//let diff = moment(startDate).startOf('day').diff(moment(Date.now()).startOf('day'), 'days');
+
+
+var theString = "frdfgABC123fgf";
+
+if (theString.match('/^.*AbC123.*$/i'))
+{
+	alert("found");
+}
+
+var theString = "frdfgABC123fgf class";
+var expMatch = "fgf class"
+if (theString.match(new RegExp('^.*' + expMatch +'.*$', "i")))
+{
+	alert("found");
+}
+
+/****************************/
+
+
+bootstrap 4 navbar
+https://www.codeply.com/go/EuirMfjkYZ
+
+/^
+  (?=.*\d)          // should contain at least one digit
+  (?=.*[a-z])       // should contain at least one lower case
+  (?=.*[A-Z])       // should contain at least one upper case
+  [a-zA-Z0-9]{8,}   // should contain at least 8 from the mentioned characters
+$/
+
+regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).+$/ (PHP A lower, A Upper Char , A number)
+data-validation-regexp="^(?=.*[a-z])(?=.*[A-Z])[a-zA-Z]{4,}$ (JS A lower, A Upper Char)

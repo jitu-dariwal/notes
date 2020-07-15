@@ -1,0 +1,125 @@
+------------------------------------------------------------------------------------
+Apps : 
+------------------------------------------------------------------------------------
+	1.Application is a collection of tabs .
+
+	2.There are two types of applications 
+		a. Standard Application
+		b. Custom Applicaiton
+	
+
+	3.Standard Application :
+		a. Applications which are created by the salesforce are called standard 
+		   Applicaitons.
+	
+		Example   :
+			Sales 
+			CallCenter
+			Marketing
+
+		b. Standard applications cannot be deleted .
+
+		c. Standard Applications can be customized .
+
+	4.Custom Application : 
+
+		a.These are the applications which are created by the User to meet his 	   	  
+    	  organizational business requirement.
+
+		b.Steps to Custom Application
+			Navigation :
+
+		Setup
+			|---Build
+				  |---Create
+			             |---Apps
+							   |---New Custom App
+
+	Step 1: Choose the Application Types  as (Console|Custom)  :
+	
+				Example : Custom App
+
+	Step 2: Enter the App Details 
+
+			a. Enter App Label :  
+		
+				Example : ICICI Creditcard
+
+			Note  :Applications will be displayed on the UI with App Label 
+    
+			b. Enter App Name  :
+			
+				Example  :ICICI_CreditCard
+
+		  Note : Applications will be reffred in the programming using AppName.
+		  
+
+	Step 3: Choose the Logo for the Application 
+
+	       	a.Minimum size of Logo : 3KB
+
+			b.Maximum size of Logo : 20 KB
+
+			c.Width and height     : 300 px and 55 px
+
+	Step 4: Choose the Tabs and defualt Landing tab for Application.
+
+	        a. Choose all the tabs which you want to display in the application.
+
+			b. Choose the defualt Landing tab
+
+			Note : Tab whose data we want to display on the first page of the 
+				   Application that tab we choose as defualt landing tab.
+
+	Step 5: Choose the list of profile  for whom you want to display this  application 
+
+			a.visable : 
+				If we enable Visable for a profile ,All users with this profile 
+				can access this application .
+     
+	        b.visable and Default :
+ 
+				a.If we enable Visable and Default,All Users with this profile when they 
+				  login for the first time into salesforce account,defualt application 
+				  will be opened . 
+				  
+				b.we cant hide default applicaiton from  profile.
+
+Q :: How many Custom applications we can create in salesforce?
+
+ANS : It Depends  on the type of edition they have purchased.
+
+		Unlimited Edition	: Unlimited Apps
+
+		Enterprise Edition	: 10 APPS
+
+		Developer Edition	: 10 APPS
+
+		Professional		: 5 APPS
+
+UseCase  :
+
+	1. Create New Application ICICI CreditCards .
+		App Label : CreditCards
+		
+		App Name  : ICICI_CreditCard
+		
+		Logo	  : Upload ICICI Logo as Externaly available image in Documents
+					and use as logo
+					
+		Tabs	  : Home ,Account, Contact
+		
+		Default Landing : Home
+		
+		Profiles : System Admin, Manager ,HRManager, Field Executive ,Field Manager
+
+	2. Create new Application Nissan with Home,Reports ,Dashborads tab .
+
+	3. For System Admin Profile only Sales /ICICI Creditcard /Nissan  Application 
+	   should be visable 
+
+	4. Manager Profile  :  ICICI creditcard/ Nissan 
+
+	5. Clerk Profile    : ICICI Credircard 
+
+	6. Field Executive Profile : ICICI Creditcard

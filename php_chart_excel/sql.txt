@@ -1,0 +1,51 @@
+
+CREATE TABLE `audit` (
+  `AuditID` int(4) NOT NULL,
+  `CustomerID` varchar(4) NOT NULL,
+  `Date` date NOT NULL,
+  `Used` double NOT NULL,
+  PRIMARY KEY  (`AuditID`)
+) ENGINE=MyISAM;
+
+
+INSERT INTO `audit` VALUES (1, 'C001', '2008-08-01', 100000);
+INSERT INTO `audit` VALUES (2, 'C001', '2008-08-05', 200000);
+INSERT INTO `audit` VALUES (3, 'C001', '2008-08-10', 300000);
+INSERT INTO `audit` VALUES (4, 'C002', '2008-08-02', 400000);
+INSERT INTO `audit` VALUES (5, 'C002', '2008-08-07', 100000);
+INSERT INTO `audit` VALUES (6, 'C002', '2008-08-15', 300000);
+INSERT INTO `audit` VALUES (7, 'C003', '2008-08-20', 400000);
+INSERT INTO `audit` VALUES (8, 'C003', '2008-08-25', 200000);
+INSERT INTO `audit` VALUES (9, 'C004', '2008-07-04', 100000);
+INSERT INTO `audit` VALUES (10, 'C005', '2008-07-04', 200000);
+
+
+
+CREATE TABLE `country` (
+  `CountryCode` varchar(2) NOT NULL,
+  `CountryName` varchar(30) NOT NULL,
+  PRIMARY KEY  (`CountryCode`)
+) ENGINE=MyISAM;
+
+
+
+INSERT INTO `country` VALUES ('TH', 'Thailand  ');
+INSERT INTO `country` VALUES ('EN', 'English');
+INSERT INTO `country` VALUES ('US', 'United states');
+
+
+CREATE TABLE `customer` (
+  `CustomerID` varchar(4) NOT NULL,
+  `Name` varchar(50) NOT NULL,
+  `Email` varchar(50) NOT NULL,
+  `CountryCode` varchar(2) NOT NULL,
+  `Budget` double NOT NULL,
+  `Used` double NOT NULL,
+  PRIMARY KEY  (`CustomerID`)
+) ENGINE=MyISAM;
+
+
+INSERT INTO `customer` VALUES ('C001', 'Win Weerachai', 'win.weerachai@shotdev.com', 'TH', 1000000, 600000);
+INSERT INTO `customer` VALUES ('C002', 'Jake Sully', 'jake.sully@shotdev.com', 'EN', 2000000, 800000);
+INSERT INTO `customer` VALUES ('C003', 'Tony Stark', 'tony.stark@shotdev.com', 'US', 3000000, 600000);
+INSERT INTO `customer` VALUES ('C004', 'Peter Parker', 'peter.parker@shotdev.com', 'US', 4000000, 100000);

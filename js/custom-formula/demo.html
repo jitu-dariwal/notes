@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="description" content="formula UI generator">
+		<title>formulize</title>
+		<link rel="shortcut icon" type="image/x-icon" href="img/pignose-ico.ico">
+		
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+		
+		<link rel="stylesheet" href="css/ui.css">
+		<link rel="stylesheet" href="css/style.css">
+		<link rel="stylesheet" type="text/css" href="css/formulize.css">
+	</head>
+	<body>
+		<div id="wrapper">
+			<div class="header">
+				<h4 class="version">Latest version <strong></strong></h4>
+			</div>
+			<div class="article">
+				<h3>
+					<span>Advanced</span>
+				</h3>
+				<br/><br/>
+				<button class="btn btn-danger clearForluma">getData</button>
+				
+				<div class="formulize formulize-advanced"></div>
+				
+				<div class="ui piled segment center">
+					<button class="formulize-custom" data-value="3.14">PI</button>
+					<button class="formulize-custom formulize-custom-operator" data-value="+">Custom operator (+)</button>
+					<button class="formulize-custom" data-value="3">Variable (INT 3)</button>
+				</div>
+			</div>
+		</div>
+		
+		<script type="text/javascript" src="js/jquery-1.12.4.min.js"></script>
+		<script type="text/javascript" src="js/jquery-ui.min.js"></script>
+		
+		<script type="text/javascript" src="js/formulize.umd.js"></script>
+		
+		<script type="text/javascript">
+			$(document).ready(function () {
+				// Plugin version confirmation.
+				$('.version strong').text('v' + formulize.getVersion());
+
+				var $formula = $('.formulize').formulize({
+					pipe: {
+						parse: function(elem) {
+							var $elem = $(elem);
+							if ($elem.data('value'))
+								return {
+									value: $elem.data('value'),
+									test: $elem.data('test')
+								};
+							else return $elem.text();
+						}
+					}
+				});
+				
+				var data = {
+					operator: '+',
+					operand1: {
+						operator: '-',
+						operand1: {value: {type: 'unit', unit: 1}},
+						operand2: {value: {type: 'unit', unit: 2}}
+					},
+					operand2: {value: {type: 'unit', unit: 3}},
+					operand3: {value: {type: 'unit', unit: 4}}
+				};
+				
+				$formula.setData(data);
+				
+				const advancedFormulize = $formula.filter('.formulize-advanced').data('$formulize');
+				
+				advancedFormulize.insert('2');
+				advancedFormulize.insert('*');
+				advancedFormulize.insert($('<span class="formulize-item formulize-custom" data-value="2", data-test="[ci]">custom item</span>'));
+				advancedFormulize.insert('*');
+				advancedFormulize.insert('50');
+				
+				$('.formulize-custom').draggable({
+						revert: 'invalid',
+						helper: 'clone',
+						cancel: '',
+						scroll: false
+					});
+
+				$('.formulize-advanced').droppable({
+					drop: function (event, ui) {
+						var $element = ui.draggable.clone();
+						var position = {
+							x: event.offsetX,
+							y: event.offsetY
+						};
+						var formulaUI = $(this).data('$formulize');
+						formulaUI.insert($element, position);
+					}
+				});
+				
+				$('.clearForluma').click(function(){
+					const result = advancedFormulize.getData();
+
+					//result.data is parsed formula tree
+					console.log(result);
+					
+					advancedFormulize.clear();
+				});
+			});
+		</script>
+	</body>
+</html>
