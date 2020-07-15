@@ -1,0 +1,58 @@
+First download mongo zip or extract it and then after run below command.
+(Pleae select proper folder path or change folder name from path in below command)
+
+1. move mongodb-win32-* mongodb
+
+then after in bin dir run below comand
+
+2. mongod.exe --dbpath "D:\xampp\htdocs\Notes\MongoDB\data"
+
+
+Service Auto start follow below setps
+
+
+
+Unlike other answers this will ..
+
+START THE SERVICE AUTOMATICALLY ON SYSTEM REBOOT / RESTART
+
+MongoDB Install Windows
+
+(1) Install MongoDB
+
+(2) Add bin to path
+
+(3) Create c:\data\db
+
+(4) Create c:\data\log
+
+(5) Create c:\data\mongod.cfg with contents ..
+
+		systemLog:
+			destination: file
+			path: c:\data\log\mongod.log
+		storage:
+			dbPath: c:\data\db
+			
+			
+(6) To create service that will auto start on reboot .. RUN AS ADMIN ..
+
+	sc.exe create MongoDB binPath= "\"D:\xampp\htdocs\Notes\MongoDB\mongodb\bin\mongod.exe\" --service --config=\"D:\xampp\htdocs\Notes\MongoDB\data\mongod.cfg\"" DisplayName= "MongoDB" start= "auto"
+
+(7) Start Service	
+	
+	net start MongoDB
+	
+(8) Stop Service
+
+	net stop MongoDB
+
+	sc.exe delete MongoDB
+
+
+Mongodb Backup :
+Cmd 1 : mongodump --db database_name
+Cmd 2 : mongodump -d database_name -o PathWhereDataBase_save
+
+Mongodb Restore :
+Cmd : mongorestore --db NewDataBaseName FolderPath(dump/users)
